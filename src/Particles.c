@@ -38,30 +38,40 @@ void setParticles(Particle p[], Color c1, Color c2, Color c3,
   }
 }
 
-void startParticles(Particle p[], Vector2 pos) {
+void startParticles(Particle p[], Vector2 pos, bool *active) {
   int i;
 
   for (i = 0; i < PARTICLENUM; i++) {
     p[i].pos = (Vector2){pos.x - p[i].dim / 2, pos.y - p[i].dim / 2};
   }
+
+  *active = true;
 }
 
-void manageParticles(Particle p[], int type) {
+void manageParticles(Particle p[], int type, bool *active) {
   int i;
 
-  for (i = 0; i < PARTICLENUM; i++) {
-    p[i].pos.x += p[i].speed.x * DELTA * 5;
-    p[i].pos.y += p[i].speed.y * DELTA * 5;
+  if (*active) {
+    *active = false;
+    for (i = 0; i < PARTICLENUM; i++) {
+      p[i].pos.x += p[i].speed.x * DELTA * 5;
+      p[i].pos.y += p[i].speed.y * DELTA * 5;
 
-    if (rand() % 2 == 0 && p[i].dim >= DELTA * 2 * (1.0 / type))
-      p[i].dim -= DELTA * 2 * (0.8 / type);
+      if (rand() % 2 == 0 && p[i].dim >= DELTA * 2 * (1.0 / type))
+        p[i].dim -= DELTA * 2 * (0.8 / type);
+
+      if (p[i].dim >= 0.25)
+        *active = true;
+    }
   }
 }
 
-void renderParticles(Particle p[]) {
+void renderParticles(Particle p[], bool *active) {
   int i;
 
-  for (i = 0; i < PARTICLENUM; i++) {
-    DrawCircleV(p[i].pos, p[i].dim / 2.0, p[i].c);
+  if (*active) {
+    for (i = 0; i < PARTICLENUM; i++) {
+      DrawCircleV(p[i].pos, p[i].dim / 2.0, p[i].c);
+    }
   }
 }

@@ -23,14 +23,18 @@ void setEnemy(Enemy *e) {
     e->particles[i].dim = 0;
     e->particles[i].pos = (Vector2){-WIDTH, -HEIGHT};
   }
+
+  e->active = false;
 }
 
 int resetEnemy(Enemy *e, int score) {
   int w, ret = 0;
 
   setParticles(e->particles, BLACK, DARKPURPLE, BLACK, FULL);
-  startParticles(e->particles, (Vector2){e->hitbox.x + e->hitbox.width / 2.0,
-                                         e->hitbox.y + e->hitbox.height / 2.0});
+  startParticles(e->particles,
+                 (Vector2){e->hitbox.x + e->hitbox.width / 2.0,
+                           e->hitbox.y + e->hitbox.height / 2.0},
+                 &e->active);
 
   if (score % 4 == 0 && rand() % 2 == 0)
     e->type++;
@@ -60,7 +64,7 @@ int resetEnemy(Enemy *e, int score) {
   e->graphicHealth = e->health;
 
   e->hitbox = (Rectangle){(float)(rand() % (WIDTH - w)),
-                          -1 * (float)(rand() % (HEIGHT - w)), w, w};
+                          -1 * (float)(rand() % (int)(HEIGHT / 1.5 - w)), w, w};
 
   return ret;
 }
@@ -105,7 +109,8 @@ void manageEnemies(Enemies *es) {
 
   for (i = 0; i < es->num; i++) {
     es->enemies[i].hitbox.y += DELTA * es->enemies[i].speed;
-    manageParticles(es->enemies[i].particles, es->enemies[i].type);
+    manageParticles(es->enemies[i].particles, es->enemies[i].type,
+                    &es->enemies[i].active);
   }
 }
 
@@ -123,7 +128,7 @@ void renderEnemies(Enemies *es) {
         es->enemies[i].hitbox.y - 24,
         96 * es->enemies[i].graphicHealth / es->enemies[i].healthBar, 8, GREEN);
 
-    renderParticles(es->enemies[i].particles);
+    renderParticles(es->enemies[i].particles, &es->enemies[i].active);
 
     if (es->enemies[i].graphicHealth > es->enemies[i].health) {
       es->enemies[i].graphicHealth -= DELTA / 6;

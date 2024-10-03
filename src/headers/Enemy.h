@@ -17,6 +17,8 @@ typedef struct {
 
   float speed;
   Particle particles[PARTICLENUM];
+
+  bool active;
 } Enemy;
 
 typedef struct {

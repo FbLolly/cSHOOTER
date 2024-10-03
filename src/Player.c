@@ -69,7 +69,8 @@ void managePlayer(Player *p, Enemies *es, GameData *gd) {
             es->enemies[i].particles,
             (Vector2){
                 es->enemies[i].hitbox.x + es->enemies[i].hitbox.width / 2.0,
-                es->enemies[i].hitbox.y + es->enemies[i].hitbox.height / 2.0});
+                es->enemies[i].hitbox.y + es->enemies[i].hitbox.height / 2.0},
+            &es->enemies[i].active);
       }
     }
   }
