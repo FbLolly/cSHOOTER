@@ -10,6 +10,8 @@ void setGame(Game *game, GameData *gd) {
   setEnemies(&game->enemies);
   setPlayer(&game->player);
   setShop(&game->shop, gd);
+
+  game->currentTxt = LoadTextureFromImage(LoadImage("images/b2.png"));
 }
 
 void manageGame(Game *game, GameData *gd) {
@@ -21,6 +23,8 @@ void manageGame(Game *game, GameData *gd) {
 
   BeginDrawing();
   ClearBackground(WHITE);
+  DrawTexture(game->currentTxt, 0, 0, RAYWHITE);
+
   renderPlayer(&game->player);
   renderEnemies(&game->enemies);
   renderSxPanel(gd, game->player.score, game->player.money);
@@ -49,11 +53,11 @@ void renderSxPanel(GameData *gd, int score, int money) {
     big = mt.x;
 
   DrawRectangleRounded((Rectangle){10, 10, 40 + big, 65 + mt.y}, 0.25, 50,
-                       (Color){180, 180, 180, 180});
+                       (Color){50, 50, 50, 180});
 
   DrawTextEx(gd->normalFont, TextFormat("Score: %d", score), (Vector2){30, 30},
-             NORMALSIZE, 1, (Color){50, 50, 50, 180});
+             NORMALSIZE, 1, (Color){180, 180, 180, 180});
   DrawTextEx(gd->normalFont, TextFormat("Money: %d", money),
              (Vector2){30, 60 + mt.y - mt2.y}, NORMALSIZE, 1,
-             (Color){50, 50, 50, 180});
+             (Color){180, 180, 180, 180});
 }

@@ -10,6 +10,8 @@ typedef struct {
 
   Enemies enemies;
   Shop shop;
+
+  Texture currentTxt;
 } Game;
 
 void setGame(Game *game, GameData *gd);

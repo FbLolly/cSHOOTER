@@ -77,9 +77,7 @@ void managePlayer(Player *p, Enemies *es, GameData *gd) {
 }
 
 void renderPlayer(Player *p) {
-  int i;
+  DrawRectangleRounded(p->bullet, 0.25, 10, GRAY);
 
-  DrawRectangleRec(p->bullet, DARKGRAY);
-
-  DrawRectangleRec(p->HitBox, BLACK);
+  DrawRectangleRounded(p->HitBox, 0.25, 10, LIGHTGRAY);
 }

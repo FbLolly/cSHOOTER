@@ -118,7 +118,7 @@ void renderShop(Shop *shop, GameData *gd) {
   int i;
 
   DrawRectangleRounded((Rectangle){shop->animX, 10, WIDTH - 20, HEIGHT - 20},
-                       0.05, 50, (Color){180, 180, 180, 180});
+                       0.05, 50, (Color){50, 50, 50, 180});
   if (gd->state == SHOP || shop->animX < WIDTH) {
     for (i = 0; i < 4; i++) {
       renderButton(&shop->btns[i], gd);

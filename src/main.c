@@ -74,6 +74,7 @@ int main() {
 
 end:
   freeEnemies(&game.enemies);
+  UnloadTexture(game.currentTxt);
   UnloadFont(gameData.titleFont);
   UnloadFont(gameData.normalFont);
 

@@ -30,7 +30,7 @@ void setEnemy(Enemy *e) {
 int resetEnemy(Enemy *e, int score) {
   int w, ret = 0;
 
-  setParticles(e->particles, BLACK, DARKPURPLE, BLACK, FULL);
+  setParticles(e->particles, GOLD, PURPLE, GOLD, FULL);
   startParticles(e->particles,
                  (Vector2){e->hitbox.x + e->hitbox.width / 2.0,
                            e->hitbox.y + e->hitbox.height / 2.0},
@@ -118,7 +118,7 @@ void renderEnemies(Enemies *es) {
   int i;
 
   for (i = 0; i < es->num; i++) {
-    DrawRectangleRec(es->enemies[i].hitbox, DARKGRAY);
+    DrawRectangleRounded(es->enemies[i].hitbox, 0.25, 10, LIGHTGRAY);
 
     DrawRectangle(es->enemies[i].hitbox.x + es->enemies[i].hitbox.width / 2.0 -
                       48,
