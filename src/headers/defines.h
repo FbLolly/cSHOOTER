@@ -14,7 +14,7 @@
 
 #define PARTICLENUM 50
 
-typedef enum { MENU = 0, GAME, GAMEOVER, SHOP, QUIT } GameState;
+typedef enum { MENU = 0, GAME, PAUSE, GAMEOVER, SHOP, QUIT } GameState;
 typedef enum { FULL = 0, BOTTOM, TOP, LEFT, RIGHT } ParticleType;
 
 #endif

@@ -10,12 +10,10 @@ void setGame(Game *game, GameData *gd) {
   setEnemies(&game->enemies);
   setPlayer(&game->player);
   setShop(&game->shop, gd);
-
-  game->currentTxt = LoadTextureFromImage(LoadImage("images/b2.png"));
 }
 
 void manageGame(Game *game, GameData *gd) {
-  if (gd->state != GAMEOVER && gd->state != SHOP) {
+  if (gd->state == GAME) {
     managePlayer(&game->player, &game->enemies, gd);
     manageEnemies(&game->enemies);
   }
@@ -23,17 +21,26 @@ void manageGame(Game *game, GameData *gd) {
 
   BeginDrawing();
   ClearBackground(WHITE);
-  DrawTexture(game->currentTxt, 0, 0, RAYWHITE);
+  DrawTexture(gd->background, 0, 0, RAYWHITE);
 
   renderPlayer(&game->player);
   renderEnemies(&game->enemies);
   renderSxPanel(gd, game->player.score, game->player.money);
 
-  if (gd->state == GAMEOVER) {
+  switch (gd->state) {
+  case PAUSE:
+    DrawRectangleRec((Rectangle){0, 0, WIDTH, HEIGHT},
+                     (Color){50, 50, 50, 180});
+    renderPause(game, gd);
+    break;
+  case GAMEOVER:
     DrawRectangleRec((Rectangle){0, 0, WIDTH, HEIGHT},
                      (Color){180, 180, 180, 180});
     gameOver(game->player.score, gd);
+  default:
+    break;
   }
+
   renderShop(&game->shop, gd);
 
   EndDrawing();
@@ -60,4 +67,31 @@ void renderSxPanel(GameData *gd, int score, int money) {
   DrawTextEx(gd->normalFont, TextFormat("Money: %d", money),
              (Vector2){30, 60 + mt.y - mt2.y}, NORMALSIZE, 1,
              (Color){180, 180, 180, 180});
+}
+
+void renderPause(Game *game, GameData *gd) {
+  Vector2 mt =
+      MeasureTextEx(gd->normalFont, "Press ESC to Play", NORMALSIZE, 1);
+  Vector2 mt2 =
+      MeasureTextEx(gd->normalFont,
+                    TextFormat("Score: %d | Money: %d", game->player.score,
+                               game->player.money),
+                    NORMALSIZE, 1);
+
+  DrawTextEx(
+      gd->titleFont, "Paused",
+      (Vector2){WIDTH / 2.0 -
+                    MeasureTextEx(gd->titleFont, "Paused", TITLESIZE, 1).x /
+                        2.0,
+                HEIGHT / 8.0},
+      TITLESIZE, 1, LIGHTGRAY);
+
+  DrawTextEx(gd->normalFont,
+             TextFormat("Score: %d | Money: %d", game->player.score,
+                        game->player.money),
+             (Vector2){WIDTH / 2.0 - mt2.x / 2.0, HEIGHT / 2.25}, NORMALSIZE, 1,
+             LIGHTGRAY);
+  DrawTextEx(gd->normalFont, TextFormat("Press ESC to Play"),
+             (Vector2){WIDTH / 2.0 - mt.x / 2.0, HEIGHT / 2.0 + HEIGHT / 4.0},
+             NORMALSIZE, 1, LIGHTGRAY);
 }

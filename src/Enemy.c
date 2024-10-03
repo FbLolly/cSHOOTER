@@ -9,8 +9,8 @@ void setEnemy(Enemy *e) {
   int i;
 
   e->type = 1;
-  e->hitbox = (Rectangle){(float)(rand() % WIDTH - 48),
-                          -1 * (float)(rand() % HEIGHT / 1.5), 48, 48};
+  e->hitbox = (Rectangle){(float)(rand() % (WIDTH - 48)),
+                          -1 * (float)(rand() % (HEIGHT / 2)), 48, 48};
 
   e->speed = 3.5;
   e->healthBar = 1;
@@ -63,8 +63,9 @@ int resetEnemy(Enemy *e, int score) {
   e->health = e->type;
   e->graphicHealth = e->health;
 
-  e->hitbox = (Rectangle){(float)(rand() % (WIDTH - w)),
-                          -1 * (float)(rand() % (int)(HEIGHT / 1.5 - w)), w, w};
+  e->hitbox = (Rectangle){
+      (float)(rand() % (WIDTH - w)),
+      (-1 * (float)(rand() % (HEIGHT / 2))) - (int)(HEIGHT / 3), w, w};
 
   return ret;
 }

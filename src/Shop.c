@@ -42,7 +42,7 @@ void setShop(Shop *shop, GameData *gd) {
 
     pos.x += WIDTH;
 
-    setButton(&shop->btns[i], gd, str, pos, PURPLE);
+    setButton(&shop->btns[i], gd, str, pos, DARKGRAY, LIGHTGRAY);
   }
 }
 

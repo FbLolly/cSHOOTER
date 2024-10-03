@@ -6,14 +6,15 @@
 typedef struct {
   Rectangle HitBox;
   Rectangle Graphical;
-  Color color;
   char *string;
 
   Vector2 mt;
+  Color color;
+  Color textColor;
 } Button;
 
 void setButton(Button *b, GameData *gd, char *string, Vector2 TextStart,
-               Color color);
+               Color color, Color textColor);
 bool isButtonPressed(Button *b);
 void manageButton(Button *b);
 void renderButton(Button *b, GameData *gd);

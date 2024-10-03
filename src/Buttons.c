@@ -3,15 +3,17 @@
 #include "headers/defines.h"
 #include <raylib.h>
 
-void setButton(Button *b, GameData *gd, char *string, Vector2 pos,
-               Color color) {
+void setButton(Button *b, GameData *gd, char *string, Vector2 pos, Color color,
+               Color textColor) {
   b->mt = MeasureTextEx(gd->normalFont, string, NORMALSIZE, 1);
 
   b->HitBox = (Rectangle){pos.x - (b->mt.x / 2), pos.y, b->mt.x * 2, b->mt.y};
   b->Graphical =
       (Rectangle){pos.x + b->mt.x / 2.0, pos.y + b->mt.y / 2.0, 0, 0};
-  b->color = color;
   b->string = string;
+
+  b->color = color;
+  b->textColor = textColor;
 }
 
 bool isButtonPressed(Button *b) {
@@ -50,5 +52,5 @@ void renderButton(Button *b, GameData *gd) {
   DrawTextEx(gd->normalFont, b->string,
              (Vector2){b->HitBox.x + b->HitBox.width / 2.0 - b->mt.x / 2.0,
                        b->HitBox.y + 5},
-             NORMALSIZE, 1, BLACK);
+             NORMALSIZE, 1, b->textColor);
 }

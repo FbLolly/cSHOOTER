@@ -17,6 +17,7 @@ int main() {
   bool exit = false, counter = false;
 
   srand(time(NULL));
+  SetTargetFPS(240);
 
   InitWindow(WIDTH, HEIGHT, "Game");
   SetConfigFlags(FLAG_VSYNC_HINT);
@@ -30,28 +31,13 @@ int main() {
     if (WindowShouldClose() && !IsKeyDown(KEY_ESCAPE)) {
       goto end;
     }
-    if (IsKeyDown(KEY_ESCAPE)) {
-      switch (gameData.state) {
-      case SHOP:
-        gameData.state = GAME;
-      default:
-        gameData.state = MENU;
-        break;
-      }
-    }
-
-    if (IsKeyPressed(KEY_ENTER)) {
-      if (gameData.state == GAME)
-        gameData.state = SHOP;
-      else if (gameData.state == SHOP)
-        gameData.state = GAME;
-    }
 
     switch (gameData.state) {
     case MENU:
       counter = false;
       manageMenu(&menu, &gameData);
       break;
+    case PAUSE:
     case GAMEOVER:
     case SHOP:
       manageGame(&game, &gameData);
@@ -69,12 +55,42 @@ int main() {
     default:
       break;
     }
+
+    if (IsKeyPressed(KEY_ESCAPE)) {
+      switch (gameData.state) {
+      case PAUSE:
+      case SHOP:
+        break;
+      default:
+        gameData.state = MENU;
+        break;
+      }
+    }
+
+    if (IsKeyPressed(KEY_ENTER) && gameData.state == GAME) {
+      gameData.state = SHOP;
+    }
+    if (IsKeyPressed(KEY_P) && gameData.state == GAME) {
+      gameData.state = PAUSE;
+    }
+
+    if (IsKeyDown(KEY_ESCAPE)) {
+      switch (gameData.state) {
+      case PAUSE:
+      case SHOP:
+        gameData.state = GAME;
+        break;
+      default:
+        break;
+      }
+    }
+
     gameData.frameCounter += 1 * DELTA;
   }
 
 end:
   freeEnemies(&game.enemies);
-  UnloadTexture(game.currentTxt);
+  UnloadTexture(gameData.background);
   UnloadFont(gameData.titleFont);
   UnloadFont(gameData.normalFont);
 

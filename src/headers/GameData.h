@@ -12,6 +12,8 @@ typedef struct {
   Font normalFont; // 16 px
 
   bool pause;
+
+  Texture background;
 } GameData;
 
 void setGameData(GameData *gd);

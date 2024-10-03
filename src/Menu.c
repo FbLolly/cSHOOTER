@@ -25,7 +25,7 @@ void setMenu(Menu *m, GameData *gd) {
         (Vector2){WIDTH / 2.0 -
                       MeasureTextEx(gd->normalFont, str, NORMALSIZE, 1).x / 2.0,
                   HEIGHT / 1.9 + i * HEIGHT / 8.6},
-        PURPLE);
+        DARKGRAY, LIGHTGRAY);
   }
 }
 
@@ -49,7 +49,14 @@ void manageMenu(Menu *m, GameData *gd) {
 
   BeginDrawing();
   ClearBackground(WHITE);
-  DrawTextEx(gd->titleFont, m->title, m->titlePos, TITLESIZE, 1, BLACK);
+  DrawTexture(gd->background, 0, 0, RAYWHITE);
+  DrawRectangle(0, 0, WIDTH, HEIGHT, (Color){50, 50, 50, 180});
+
+  DrawTextEx(gd->titleFont, m->title,
+             (Vector2){m->titlePos.x - NORMALSIZE / 4.0,
+                       m->titlePos.y - NORMALSIZE / 8.0},
+             TITLESIZE, 1, DARKGRAY);
+  DrawTextEx(gd->titleFont, m->title, m->titlePos, TITLESIZE, 1, LIGHTGRAY);
 
   for (i = 0; i < 2; i++)
     renderButton(&m->btns[i], gd);

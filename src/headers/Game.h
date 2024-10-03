@@ -10,13 +10,13 @@ typedef struct {
 
   Enemies enemies;
   Shop shop;
-
-  Texture currentTxt;
 } Game;
 
 void setGame(Game *game, GameData *gd);
 void manageGame(Game *game, GameData *gd);
 
 void renderSxPanel(GameData *gd, int score, int money);
+
+void renderPause(Game *game, GameData *gd);
 
 #endif

@@ -60,6 +60,9 @@ void manageParticles(Particle p[], int type, bool *active) {
       if (rand() % 2 == 0 && p[i].dim >= DELTA * 2 * (1.0 / type))
         p[i].dim -= DELTA * 2 * (0.8 / type);
 
+      if (p[i].dim <= DELTA * 6 * (0.8 / type))
+        p[i].dim = 0;
+
       if (p[i].dim >= 0.25)
         *active = true;
     }
