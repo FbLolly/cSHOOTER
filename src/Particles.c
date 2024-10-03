@@ -62,6 +62,6 @@ void renderParticles(Particle p[]) {
   int i;
 
   for (i = 0; i < PARTICLENUM; i++) {
-    DrawRectangle(p[i].pos.x, p[i].pos.y, p[i].dim, p[i].dim, p[i].c);
+    DrawCircleV(p[i].pos, p[i].dim / 2.0, p[i].c);
   }
 }
