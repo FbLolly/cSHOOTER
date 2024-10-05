@@ -15,10 +15,6 @@ void setGameData(GameData *gd) {
 }
 
 void gameOver(int lastScore, GameData *gd) {
-  if (IsKeyPressed(KEY_ENTER)) {
-    gd->state = MENU;
-    return;
-  }
 
   DrawTextEx(
       gd->titleFont, "GAME OVER",
@@ -26,7 +22,7 @@ void gameOver(int lastScore, GameData *gd) {
                     MeasureTextEx(gd->titleFont, "GAME OVER", TITLESIZE, 1).x /
                         2.0,
                 WIDTH / 50.0},
-      TITLESIZE, 1, BLACK);
+      TITLESIZE, 1, LIGHTGRAY);
 
   DrawTextEx(gd->normalFont, TextFormat("Last score: %d", lastScore),
              (Vector2){WIDTH / 2.0 - MeasureTextEx(gd->normalFont,
@@ -36,7 +32,7 @@ void gameOver(int lastScore, GameData *gd) {
                                              .x /
                                          2.0,
                        WIDTH / 4.0},
-             NORMALSIZE, 1, BLACK);
+             NORMALSIZE, 1, LIGHTGRAY);
 
   DrawTextEx(gd->normalFont, "Press Enter To Continue",
              (Vector2){WIDTH / 2.0 - MeasureTextEx(gd->normalFont,
@@ -45,5 +41,5 @@ void gameOver(int lastScore, GameData *gd) {
                                              .x /
                                          2.0,
                        WIDTH / 3.0},
-             NORMALSIZE, 1, BLACK);
+             NORMALSIZE, 1, LIGHTGRAY);
 }

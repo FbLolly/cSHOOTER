@@ -14,7 +14,7 @@ int main() {
   Menu menu;
   Game game;
 
-  bool exit = false, counter = false;
+  bool exit = false, counter = false, menuCount = false;
 
   srand(time(NULL));
   SetTargetFPS(240);
@@ -23,7 +23,6 @@ int main() {
   SetConfigFlags(FLAG_VSYNC_HINT);
 
   setGameData(&gameData);
-  setMenu(&menu, &gameData);
 
   game.enemies.enemies = NULL;
 
@@ -34,6 +33,11 @@ int main() {
 
     switch (gameData.state) {
     case MENU:
+      if (!menuCount) {
+        setMenu(&menu, &gameData);
+        menuCount = true;
+      }
+
       counter = false;
       manageMenu(&menu, &gameData);
       break;
@@ -46,6 +50,7 @@ int main() {
         setGame(&game, &gameData);
         counter = true;
       }
+      menuCount = false;
 
       manageGame(&game, &gameData);
       break;
@@ -72,6 +77,9 @@ int main() {
     }
     if (IsKeyPressed(KEY_P) && gameData.state == GAME) {
       gameData.state = PAUSE;
+    }
+    if (IsKeyDown(KEY_ENTER) && gameData.state == GAMEOVER) {
+      gameData.state = MENU;
     }
 
     if (IsKeyDown(KEY_ESCAPE)) {

@@ -35,7 +35,7 @@ void manageGame(Game *game, GameData *gd) {
     break;
   case GAMEOVER:
     DrawRectangleRec((Rectangle){0, 0, WIDTH, HEIGHT},
-                     (Color){180, 180, 180, 180});
+                     (Color){50, 50, 50, 180});
     gameOver(game->player.score, gd);
   default:
     break;
