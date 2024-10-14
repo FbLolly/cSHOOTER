@@ -41,6 +41,7 @@ void setShop(Shop *shop, GameData *gd) {
     pos.y -= mt.y / 2.0;
 
     pos.x += WIDTH;
+    pos.x -= NORMALSIZE / 5.0;
 
     setButton(&shop->btns[i], gd, str, pos, DARKGRAY, LIGHTGRAY);
   }
