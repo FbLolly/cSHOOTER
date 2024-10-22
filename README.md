@@ -1,6 +1,6 @@
 # **🔫 cSHOOTER!**
 ## **❤️ My Biggest Raylib project yet!**
-## **💻 Still in development**
+###**💻 Still in development**
 
 *🎮 Just a simple shooter, made in Raylib* <br>
 *🎆 A simple yet effective particle system!* <br>
