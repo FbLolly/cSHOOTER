@@ -1,5 +1,5 @@
-## **🔫 Biggest Raylib project yet!**
-# **💻 Still in development**
+# **🔫 Biggest Raylib project yet!**
+## **💻 Still in development**
 
 *🎮 Just a simple Raylib game, made in Raylib* <br>
 *🎆 A simple yet effective particle system!* <br>
