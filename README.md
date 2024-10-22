@@ -1,4 +1,5 @@
-# **🔫 Biggest Raylib project yet!**
+# **cSHOOTER!**
+## **❤️ My Biggest Raylib project yet!**
 ## **💻 Still in development**
 
 *🎮 Just a simple Raylib game, made in Raylib* <br>
