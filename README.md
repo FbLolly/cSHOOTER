@@ -1,4 +1,4 @@
-# **cSHOOTER!**
+# **🔫 cSHOOTER!**
 ## **❤️ My Biggest Raylib project yet!**
 ## **💻 Still in development**
 
