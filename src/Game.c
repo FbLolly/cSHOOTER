@@ -30,7 +30,8 @@ void manageGame(Game *game, GameData *gd) {
   renderSxPanel(gd, game->player.score, game->player.money);
 
   for (i = 0; i < game->enemies.num; i++) {
-    if (game->enemies.enemies[i].isStray) {
+    if (game->enemies.enemies[i].isStray &&
+        game->enemies.enemies[i].hitbox.y <= 0) {
       DrawTexture(game->warningTexture,
                   game->enemies.enemies[i].hitbox.x +
                       game->enemies.enemies[i].hitbox.width / 2.0 - 64,

@@ -42,6 +42,20 @@ int resetEnemy(Enemy *e, int score) {
 
   if (e->isStray) {
     e->speed /= 5;
+    e->type++;
+  }
+
+  if (score <= 900)
+    w = rand() % (6 - score / 300);
+  else
+    w = rand() % 3;
+
+  if (w == 1) {
+    e->isStray = true;
+    e->speed *= 5;
+    e->type = 1;
+  } else {
+    e->isStray = false;
   }
 
   switch (e->type) {
@@ -72,18 +86,8 @@ int resetEnemy(Enemy *e, int score) {
       (float)(rand() % (WIDTH - w)),
       (-1 * (float)(rand() % (HEIGHT / 2))) - (int)(HEIGHT / 3), w, w};
 
-  if (score <= 900)
-    w = rand() % (6 - score / 300); // im using w as reciling
-  else
-    w = rand() % 3;
-
-  if (w == 1) {
-    e->isStray = true;
-    e->speed *= 5;
-    e->hitbox.y -= (WIDTH * 3.0 / 4.0);
-  } else {
-    e->isStray = false;
-  }
+  if (e->isStray)
+    e->hitbox.y -= WIDTH;
 
   return ret;
 }
