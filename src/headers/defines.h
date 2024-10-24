@@ -6,6 +6,9 @@
 
 #define DELTA GetFrameTime() * 50
 
+#define BACKGROUND "images/b2.png"
+#define WARNING "images/warning.png"
+
 #define TITLEFONT "fonts/Wolfskin.ttf"
 #define NORMALFONT TITLEFONT
 

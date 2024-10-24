@@ -22,6 +22,9 @@ int main() {
   InitWindow(WIDTH, HEIGHT, "Game");
   SetConfigFlags(FLAG_VSYNC_HINT);
 
+  // Early loading warning texture to avoid reloading it
+  game.warningTexture = LoadTextureFromImage(LoadImage(WARNING));
+
   setGameData(&gameData);
 
   game.enemies.enemies = NULL;
@@ -99,6 +102,7 @@ int main() {
 end:
   freeEnemies(&game.enemies);
   UnloadTexture(gameData.background);
+  UnloadTexture(game.warningTexture);
   UnloadFont(gameData.titleFont);
   UnloadFont(gameData.normalFont);
 

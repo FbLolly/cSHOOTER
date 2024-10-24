@@ -25,6 +25,7 @@ void setEnemy(Enemy *e) {
   }
 
   e->active = false;
+  e->isStray = false;
 }
 
 int resetEnemy(Enemy *e, int score) {
@@ -38,6 +39,10 @@ int resetEnemy(Enemy *e, int score) {
 
   if (score % 4 == 0 && rand() % 2 == 0)
     e->type++;
+
+  if (e->isStray) {
+    e->speed /= 5;
+  }
 
   switch (e->type) {
   case 1:
@@ -66,6 +71,19 @@ int resetEnemy(Enemy *e, int score) {
   e->hitbox = (Rectangle){
       (float)(rand() % (WIDTH - w)),
       (-1 * (float)(rand() % (HEIGHT / 2))) - (int)(HEIGHT / 3), w, w};
+
+  if (score <= 900)
+    w = rand() % (6 - score / 300); // im using w as reciling
+  else
+    w = rand() % 3;
+
+  if (w == 1) {
+    e->isStray = true;
+    e->speed *= 5;
+    e->hitbox.y -= (WIDTH * 3.0 / 4.0);
+  } else {
+    e->isStray = false;
+  }
 
   return ret;
 }

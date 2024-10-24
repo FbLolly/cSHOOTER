@@ -13,6 +13,8 @@ void setGame(Game *game, GameData *gd) {
 }
 
 void manageGame(Game *game, GameData *gd) {
+  int i;
+
   if (gd->state == GAME) {
     managePlayer(&game->player, &game->enemies, gd);
     manageEnemies(&game->enemies);
@@ -26,6 +28,15 @@ void manageGame(Game *game, GameData *gd) {
   renderPlayer(&game->player);
   renderEnemies(&game->enemies);
   renderSxPanel(gd, game->player.score, game->player.money);
+
+  for (i = 0; i < game->enemies.num; i++) {
+    if (game->enemies.enemies[i].isStray) {
+      DrawTexture(game->warningTexture,
+                  game->enemies.enemies[i].hitbox.x +
+                      game->enemies.enemies[i].hitbox.width / 2.0 - 64,
+                  20, WHITE);
+    }
+  }
 
   switch (gd->state) {
   case PAUSE:

@@ -19,6 +19,7 @@ typedef struct {
   Particle particles[PARTICLENUM];
 
   bool active;
+  bool isStray;
 } Enemy;
 
 typedef struct {

@@ -5,11 +5,15 @@
 #include "GameData.h"
 #include "Player.h"
 #include "Shop.h"
+#include <raylib.h>
+
 typedef struct {
   Player player;
 
   Enemies enemies;
   Shop shop;
+
+  Texture warningTexture;
 } Game;
 
 void setGame(Game *game, GameData *gd);
