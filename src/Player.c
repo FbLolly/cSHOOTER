@@ -19,9 +19,15 @@ void managePlayer(Player *p, Enemies *es, GameData *gd) {
 
   if (IsKeyDown(KEY_A) || IsKeyDown(KEY_LEFT)) {
     p->HitBox.x -= DELTA * 20;
+
+    if (IsKeyDown(KEY_LEFT_SHIFT))
+      p->HitBox.x += DELTA * 10;
   }
   if (IsKeyDown(KEY_D) || IsKeyDown(KEY_RIGHT)) {
     p->HitBox.x += DELTA * 20;
+
+    if (IsKeyDown(KEY_LEFT_SHIFT))
+      p->HitBox.x -= DELTA * 10;
   }
   if (IsKeyPressed(KEY_SPACE) && !p->shooting) {
     p->shooting = true;
