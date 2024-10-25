@@ -41,9 +41,9 @@ void manageButton(Button *b) {
     if (b->Graphical.y < b->HitBox.y + (b->HitBox.height / 2.0))
       b->Graphical.y += DELTA / 20 * b->HitBox.height;
     if (b->Graphical.width > 0)
-      b->Graphical.width -= DELTA / 20 * b->HitBox.width * 2;
+      b->Graphical.width -= DELTA / 20 * b->HitBox.width * 4;
     if (b->Graphical.height > 0)
-      b->Graphical.height -= DELTA / 20 * b->HitBox.height * 2;
+      b->Graphical.height -= DELTA / 20 * b->HitBox.height * 4;
   }
 }
 
