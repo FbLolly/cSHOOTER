@@ -67,6 +67,9 @@ void managePlayer(Player *p, Enemies *es, GameData *gd) {
 
         if (es->enemies[i].health <= 0) {
           p->money += es->enemies[i].type;
+          if (es->enemies[i].isStray)
+            p->money += 2;
+
           if (resetEnemy(&es->enemies[i], p->score) == 1) {
             addEnemies(es);
           }

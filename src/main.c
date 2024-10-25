@@ -20,6 +20,8 @@ int main() {
   SetTargetFPS(240);
 
   InitWindow(WIDTH, HEIGHT, "Game");
+  FULLSCREEN; // activates fullscreen on windows to hide the taskbar but keeps
+              // it windowed on linux
   SetConfigFlags(FLAG_VSYNC_HINT);
 
   // Early loading warning texture to avoid reloading it

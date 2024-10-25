@@ -25,7 +25,7 @@ void setMenu(Menu *m, GameData *gd) {
         (Vector2){WIDTH / 2.0 -
                       MeasureTextEx(gd->normalFont, str, NORMALSIZE, 1).x / 2.0,
                   HEIGHT / 1.9 + i * HEIGHT / 8.6},
-        DARKGRAY, LIGHTGRAY);
+        (Color){80, 80, 80, 180}, LIGHTGRAY);
   }
 }
 

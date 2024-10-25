@@ -1,6 +1,12 @@
 #ifndef DEFINES_H
 #define DEFINES_H
 
+#ifdef WINDOWS_H
+#define FULLSCREEN ToggleFullscreen()
+#else
+#define FULLSCREEN
+#endif
+
 #define WIDTH 1920
 #define HEIGHT 1080
 

@@ -11,7 +11,7 @@ void setGameData(GameData *gd) {
   gd->normalFont = LoadFontEx(NORMALFONT, NORMALSIZE, NULL, 0);
 
   gd->pause = false;
-  gd->background = LoadTextureFromImage(LoadImage("images/b2.png"));
+  gd->background = LoadTextureFromImage(LoadImage(BACKGROUND));
 }
 
 void gameOver(int lastScore, GameData *gd) {

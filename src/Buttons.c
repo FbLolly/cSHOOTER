@@ -48,7 +48,10 @@ void manageButton(Button *b) {
 }
 
 void renderButton(Button *b, GameData *gd) {
-  DrawRectangleRounded(b->Graphical, 0.5, 50, b->color);
+  if (b->Graphical.width >= 5) {
+    DrawRectangleRounded(b->Graphical, 0.5, 50, b->color);
+  }
+
   DrawTextEx(gd->normalFont, b->string,
              (Vector2){b->HitBox.x + b->HitBox.width / 2.0 - b->mt.x / 2.0,
                        b->HitBox.y + 5},
