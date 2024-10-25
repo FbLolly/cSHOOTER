@@ -5,6 +5,8 @@
 
 🙏 A fun endless shooter game! <br>
 💸 With a Shop and power up system <br>
-🎮 Fun gameplay :>
+🎮 Fun gameplay :> <br><br>
+
+To compile on windows, remember to compile from main, not from src and to compile src/*.c, not *.c
 
 ### 🩷 Made by me! https://github.com/fblolly
