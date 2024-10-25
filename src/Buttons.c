@@ -28,13 +28,13 @@ bool isButtonPressed(Button *b) {
 void manageButton(Button *b) {
   if (CheckCollisionPointRec(GetMousePosition(), b->HitBox)) {
     if (b->Graphical.x >= b->HitBox.x)
-      b->Graphical.x -= DELTA / 50 * b->HitBox.width * 2;
+      b->Graphical.x -= DELTA / 50 * b->HitBox.width * 4;
     if (b->Graphical.y >= b->HitBox.y)
-      b->Graphical.y -= DELTA / 50 * b->HitBox.height * 2;
+      b->Graphical.y -= DELTA / 50 * b->HitBox.height * 4;
     if (b->Graphical.width <= b->HitBox.width)
-      b->Graphical.width += DELTA / 50 * b->HitBox.width * 4;
+      b->Graphical.width += DELTA / 50 * b->HitBox.width * 8;
     if (b->Graphical.height <= b->HitBox.height)
-      b->Graphical.height += DELTA / 50 * b->HitBox.height * 4;
+      b->Graphical.height += DELTA / 50 * b->HitBox.height * 8;
   } else {
     if (b->Graphical.x < b->HitBox.x + (b->HitBox.width / 2.0))
       b->Graphical.x += DELTA / 20 * b->HitBox.width;
